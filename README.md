@@ -8,7 +8,7 @@ MySQL - Status
 0 ⇒ No
 1 ⇒ Yes
 </pre></br>
-It is possible in zabbix GUI `Administrtion -> General -> Value mappings -> create Value Map`
+It is possible in zabbix GUI `Administration -> General -> Value mappings -> create Value Map`
 
 
 On a server that is monitored
