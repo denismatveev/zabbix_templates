@@ -6,5 +6,5 @@
 BACKUPDIR=/backups/
 HOSTNUM=$(ls -1 ${BACKUPDIR} | wc -l)
 BACKUPNUM=$(find ${BACKUPDIR} -type d -mtime -1 -regextype posix-egrep -regex '^.*MySQL/20[0-9]{2}-[0-9]{2}-[0-9]{2}$' | wc -l)
-[[ ${HOSTNUM} -eq ${BACKUPNUM} ]] && ret=0 || ret=1
+[[ ${HOSTNUM} -le ${BACKUPNUM} ]] && ret=0 || ret=1
 echo $ret
