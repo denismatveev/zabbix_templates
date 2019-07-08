@@ -34,8 +34,12 @@ Place the script nginx.sh into /etc/zabbix/scripts, then make it executable:
 ```bash
 # chmod +x /etc/zabbix/scripts/nginx.sh
 ```
-also create file zabbix_agentd.d/userparameter_nginx.conf that contains
-```# systemctl restart zabbix-agent```
+also copy file zabbix_agentd.d/userparameter_nginx.conf
+then restart zabbix-agent
+```
+# systemctl restart zabbix-agent
+```
+
 prepare nginx to give statistics
 ```
 server {
@@ -46,7 +50,7 @@ server {
     access_log off;
     allow 127.0.0.1;
     deny all;
-}
+  }
 }
 ```
 enable this virtual host:
