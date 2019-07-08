@@ -19,8 +19,7 @@ fi
 /^idle proc/ {print pr"idle_processes "$3}
 /^listen queue:/ {print pr"listen_queue_len "$3}
 /^max children reach/ {print pr"max_children_reached "$4}
-/^max listen queue:/ {print pr"max_listen_queue_len "$4}' | ${SENDER} -s ${SERVER} -c ${CONFIG} -i - 2>/dev/null | awk
---assign t="${TMP}" '/^sent/{if($6==0){print"-0.001";print>t}}'
+/^max listen queue:/ {print pr"max_listen_queue_len "$4}' | ${SENDER} -s ${SERVER} -c ${CONFIG} -i - 2>/dev/null | awk --assign t="${TMP}" '/^sent/{if($6==0){print"-0.001";print>t}}'
 awk '/real/{split($2,a,"[ms]");print a[1]*60+a[2];}' $TMP
 rm $TMP
 exit 0
