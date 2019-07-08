@@ -91,3 +91,10 @@ restart services:
 #systemctl restart nginx
 #systemctl restart php-fpm
 ```
+# Changes on Zabbix Side
+
+open `zabbix_agentd.conf` and uncomment string
+```
+ServerActive=zabbix.example.com
+``` 
+and specify your servers for active checks.
