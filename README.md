@@ -27,3 +27,63 @@ and create new macros with your own values:
 Also you can add macro 
 `{$DATABASE_NAME}`
 to monitor database size
+
+# Zabbix Nginx template
+
+Place the script nginx.sh into /etc/zabbix/scripts, then make it executable:
+```bash
+# chmod +x /etc/zabbix/scripts/nginx.sh
+```
+also create file zabbix_agentd.d/userparameter_nginx.conf that contains
+```# systemctl restart zabbix-agent```
+prepare nginx to give statistics
+```
+server {
+    listen 80 default_server;
+    server_name _;
+    location /status {
+    stub_status on;
+    access_log off;
+    allow 127.0.0.1;
+    deny all;
+}
+}
+```
+enable this virtual host:
+```bash
+# cd /etc/nginx/sites-enabled/
+# ln -s ../sites-available/statistics.conf
+```
+reload the web server:
+```
+# nginx -t && nginx -s reload
+```
+install template to show nginx items in zabbix GUI
+
+# Template php-fpm
+copy script and userparameter as above
+add new location in nginx virtual host `/etc/nginx/sites-available/statistics.conf`
+```
+location /php-status {
+access_log off;
+allow 127.0.0.1;
+deny all;
+include fastcgi_params;
+fastcgi_pass unix:/var/run/php5-fpm.socket;
+fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+}
+```
+make sure that statistic is enabled in
+```
+/etc/php-fpm.d/www.conf
+```
+uncomment the following:
+```
+pm.status_path = /php-status
+```
+restart services:
+```
+#systemctl restart zabbix-agent
+#systemctl restart nginx
+#systemctl restart php-fpm
+```
