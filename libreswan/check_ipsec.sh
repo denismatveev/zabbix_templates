@@ -1,4 +1,11 @@
 #!/bin/bash
+# For correct working, please specify in Zabbix agent and Zabbix server the following:
+
+# Timeout = 30
+
+# And restart server and agent
+
+
 IPSEC=/usr/sbin/ipsec
 FPING=/usr/bin/fping
 basename=`basename $0`
