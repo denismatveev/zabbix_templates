@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.2</version>
-    <date>2019-11-09T18:58:42Z</date>
+    <date>2019-12-08T16:14:08Z</date>
     <groups>
         <group>
             <name>Templates/Applications</name>
@@ -30,7 +30,7 @@
                     <snmp_community/>
                     <snmp_oid/>
                     <key>ipsec.discovery</key>
-                    <delay>1h</delay>
+                    <delay>2h</delay>
                     <status>0</status>
                     <allowed_hosts/>
                     <snmpv3_contextname/>
@@ -62,9 +62,9 @@
                             <snmp_community/>
                             <snmp_oid/>
                             <key>ipsec.check[{#REMOTE_NETWORK}]</key>
-                            <delay>30s</delay>
-                            <history>90d</history>
-                            <trends>365d</trends>
+                            <delay>5m</delay>
+                            <history>10d</history>
+                            <trends>36d</trends>
                             <status>0</status>
                             <value_type>3</value_type>
                             <allowed_hosts/>
@@ -119,7 +119,7 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Template App IPSec Libreswan:ipsec.check[{#REMOTE_NETWORK}].last(#5)}=1</expression>
+                            <expression>{Template App IPSec Libreswan:ipsec.check[{#REMOTE_NETWORK}].avg(5)}=1</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>Network {#REMOTE_NETWORK} via tunnel {#TUNNEL} is not reachable</name>
