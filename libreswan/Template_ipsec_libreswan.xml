@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.2</version>
-    <date>2019-12-08T16:14:08Z</date>
+    <date>2019-12-09T10:49:39Z</date>
     <groups>
         <group>
             <name>Templates/Applications</name>
@@ -119,10 +119,10 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Template App IPSec Libreswan:ipsec.check[{#REMOTE_NETWORK}].avg(5)}=1</expression>
+                            <expression>{Template App IPSec Libreswan:ipsec.check[{#REMOTE_NETWORK}].avg(#5)}&gt;0</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
-                            <name>Network {#REMOTE_NETWORK} via tunnel {#TUNNEL} is not reachable</name>
+                            <name>Network {#REMOTE_NETWORK} via tunnel {#TUNNEL} is not reachable or there is packet loss</name>
                             <correlation_mode>0</correlation_mode>
                             <correlation_tag/>
                             <url/>
