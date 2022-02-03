@@ -2155,7 +2155,7 @@ zabbix_export:
   triggers:
     -
       uuid: 11831c52e86445498eed42de6a629b65
-      expression: 'min(/PostgreSQL by user parameters/pgsql.replication.lag.sec["{$PG.HOST}","{$PG.PORT}","{$PG.USER}","{$PG.PASSWORD}","{$PG.DB}"],5m) > {$PG.REPL_LAG.MAX.WARN} and last(/PostgreSQL by user parameters/pgsql.replication.status["{$PG.HOST}","{$PG.PORT}","{$PG.USER}","{$PG.PASSWORD}","{$PG.DB}"])<>2'
+      expression: 'min(/PostgreSQL by user parameters/pgsql.replication.lag.sec["{$PG.HOST}","{$PG.PORT}","{$PG.USER}","{$PG.PASSWORD}","{$PG.DB}"],5m) > {$PG.REPL_LAG.MAX.WARN}'
       name: 'PostgreSQL: Streaming lag with MASTER is too high (over {$PG.REPL_LAG.MAX.WARN} in 5m)'
       priority: HIGH
   graphs:
